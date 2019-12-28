@@ -1,0 +1,2 @@
+Cria Model NOME com Migração:
+php artisan make:model NOME -m
