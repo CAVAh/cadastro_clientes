@@ -17,8 +17,8 @@ class CreateCidadesTable extends Migration
             $table->increments('id');
             $table->tinyInteger('estado_id');
             $table->string('nome', 50)->unique();
-            $table->integer('cep_padrao');
-            $table->smallInteger('cod_ibge');
+            $table->integer('cep_padrao')->unsigned()->nullable();
+            $table->integer('cod_ibge')->unsigned()->nullable();
             $table->tinyInteger('ddd');
             $table->timestamps();
         });

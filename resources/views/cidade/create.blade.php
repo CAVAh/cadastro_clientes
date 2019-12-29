@@ -12,15 +12,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="uf">{{ __('attr.uf') }}:</label>
-                    <input type="text" id="uf" name="uf" class="form-control" maxlength="2" value="{{ old('uf') }}"/>
+                    <label for="ddd">{{ __('attr.ddd') }}:</label>
+                    <input type="number" id="ddd" name="ddd" class="form-control ddd" maxlength="2" value="{{ old('ddd') }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="pais_id">{{ __('attr.pais_id') }}:</label>
-                    <select class="form-control" id="pais_id" name="pais_id">
-                        @foreach($paises as $pais)
-                            <option value="{{ $pais->id }}" {{ old('pais_id') ? (old('pais_id') === $pais->id ? 'selected' : '') : ($pais->nome === 'Brasil' ? 'selected' : '') }}>{{ $pais->nome }}</option>
+                    <label for="cep_padrao">{{ __('attr.cep_padrao') }}:</label>
+                    <input type="text" id="cep_padrao" name="cep_padrao" class="form-control cep" maxlength="9" value="{{ old('cep_padrao') }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cod_ibge">{{ __('attr.cod_ibge') }}:</label>
+                    <input type="number" id="cod_ibge" name="cod_ibge" class="form-control cod_ibge" maxlength="5" value="{{ old('cod_ibge') }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado_id">{{ __('attr.estado_id') }}:</label>
+                    <select class="form-control" id="estado_id" name="estado_id">
+                        <option value="">--- Selecione ---</option>
+                        @foreach($estados as $estado)
+                            <option value="{{ $estado->id }}" {{ old('estado_id') ? (old('$estado_id') === $estado->estado_id ? 'selected' : '') : '' }}>{{ $estado->nome }}</option>
                         @endforeach
                     </select>
                 </div>

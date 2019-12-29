@@ -4,3 +4,6 @@ php artisan make:model Categoria -m
 php artisan make:migration create_categorias_table --create=categorias
 php artisan make:policy PaisPolicy --model=Pais
 php artisan make:controller CategoriaController --model=Categoria
+npm run dev (Atualiza CSS e JS)
+npm run watch (Atualiza automaticamente CSS e JS)
+php artisan make:request GrupoHospedagemRequest (Cria uma requisição complexa)

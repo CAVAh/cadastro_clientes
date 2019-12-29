@@ -64,6 +64,7 @@
                     </thead>
                     <tbody>
                         @foreach($values as $value)
+                            {{ $value->format() }}
                             <tr>
                                 @foreach($value->getFillable() as $fill)
                                     @if(!in_array($fill, $value->getHidden()))

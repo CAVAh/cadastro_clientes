@@ -13,5 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomModel extends Model
 {
-
+    /**
+     * @return string
+     */
+    public function format() {
+        return '';
+    }
 }

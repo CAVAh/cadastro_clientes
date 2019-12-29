@@ -14,17 +14,17 @@
 
                 <div class="form-group">
                     <label for="ddd">{{ __('attr.ddd') }}:</label>
-                    <input type="text" id="ddd" name="ddd" class="form-control" maxlength="2" value="{{ old('ddd', $cidade->ddd) }}"/>
+                    <input type="number" id="ddd" name="ddd" class="form-control ddd" maxlength="2" value="{{ old('ddd', $cidade->ddd) }}"/>
                 </div>
 
                 <div class="form-group">
                     <label for="cep_padrao">{{ __('attr.cep_padrao') }}:</label>
-                    <input type="text" id="cep_padrao" name="cep_padrao" class="form-control" maxlength="9" value="{{ old('cep_padrao', $cidade->cep_padrao) }}"/>
+                    <input type="text" id="cep_padrao" name="cep_padrao" class="form-control cep" maxlength="9" value="{{ old('cep_padrao', $cidade->cep_padrao) }}"/>
                 </div>
 
                 <div class="form-group">
                     <label for="cod_ibge">{{ __('attr.cod_ibge') }}:</label>
-                    <input type="number" id="cod_ibge" name="cod_ibge" class="form-control" maxlength="5" value="{{ old('cod_ibge', $cidade->cod_ibge) }}"/>
+                    <input type="number" id="cod_ibge" name="cod_ibge" class="form-control cod_ibge" maxlength="7" value="{{ old('cod_ibge', $cidade->cod_ibge) }}"/>
                 </div>
 
                 <div class="form-group">
@@ -40,5 +40,4 @@
             </form>
         </div>
     </div>
-
 @endsection

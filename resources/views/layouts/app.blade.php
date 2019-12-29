@@ -46,6 +46,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('quarto.index') }}">{{ __('attr.quarto') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('portador.index') }}">{{ __('attr.portador') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tipo_hospedagem.index') }}">{{ __('attr.tipo_hospedagem') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profissao.index') }}">{{ __('attr.profissao') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('bairro.index') }}">{{ __('attr.bairro') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('grupo_hospedagem.index') }}">{{ __('attr.grupo') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -90,5 +105,6 @@
             </div>
         </main>
     </div>
+    @yield('footer')
 </body>
 </html>

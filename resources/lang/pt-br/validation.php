@@ -30,6 +30,8 @@ return [
         'array'     => 'O campo :attribute deve ter entre :min e :max itens.',
     ],
     'boolean'               => 'O campo :attribute deve ser verdadeiro ou falso.',
+    'cep'                   => 'O CEP informado deve ser válido.',
+    'cpf'                   => 'O CPF informado não é válido.',
     'confirmed'             => 'O campo :attribute de confirmação não confere.',
     'date'                  => 'O campo :attribute não é uma data válida.',
     'date_equals'           => 'O campo :attribute deve ser uma data igual a :date.',
@@ -132,6 +134,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'date_format' => 'O campo :attribute não corresponde ao formato dd/mm/aaaa.',
     ],
 
     /*

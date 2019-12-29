@@ -10,6 +10,9 @@ class CategoriaController extends CustomController
 {
     protected $title = 'Categoria';
     protected $prefix = 'categoria';
+    protected $validation = [
+        'nome' => 'bail|required|between:3,50|unique:categorias'
+    ];
 
     /**
      * Display a listing of the resource.
@@ -24,16 +27,6 @@ class CategoriaController extends CustomController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return parent::view('categoria.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
@@ -41,16 +34,14 @@ class CategoriaController extends CustomController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'bail|required|max:50|unique:categorias'
-        ]);
+        $request->validate($this->validation);
 
         $categoria = new Categoria([
             'nome' => $request->get('nome')
         ]);
 
         $categoria->save();
-        return redirect('/categoria')->with('success', 'Registro adicionado!');
+        return parent::redirect();
     }
 
     /**
@@ -61,7 +52,7 @@ class CategoriaController extends CustomController
      */
     public function edit(Categoria $categoria)
     {
-        return parent::view('categoria.edit', compact('categoria'));
+        return parent::view($this->prefix . '.edit', compact('categoria'));
     }
 
     /**
@@ -73,14 +64,14 @@ class CategoriaController extends CustomController
      */
     public function update(Request $request, Categoria $categoria)
     {
-        $request->validate([
-            'nome' => 'bail|required|max:50|unique:categorias,nome,' . $categoria->id . ',id'
-        ]);
+        $validation = $this->validation;
+        $validation['nome'] = 'bail|required|between:3,50|unique:categorias,nome,' . $categoria->id . ',id';
+        $request->validate($validation);
 
         $categoria->nome = $request->get('nome');
         $categoria->save();
 
-        return redirect('/categoria')->with('success', 'Registro atualizado!');
+        return parent::redirect();
     }
 
     /**
@@ -94,6 +85,6 @@ class CategoriaController extends CustomController
     {
         $categoria->delete();
 
-        return redirect('/categoria')->with('success', 'Registro apagado!');
+        return parent::redirect();
     }
 }

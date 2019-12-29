@@ -14,6 +14,11 @@ class EstadoController extends CustomController
 {
     protected $title = 'Estado';
     protected $prefix = 'estado';
+    protected $validation = [
+        'nome'    => 'bail|required|between:3,50',
+        'uf'      => 'bail|required|size:2',
+        'pais_id' => 'bail|required|exists:paises,id'
+    ];
 
     /**
      * Display a listing of the resource.
@@ -38,7 +43,7 @@ class EstadoController extends CustomController
     {
         $paises = App\Pais::all(['id', 'nome']);
 
-        return parent::view('estado.create', ['paises' => $paises]);
+        return parent::view($this->prefix . '.create', ['paises' => $paises]);
     }
 
     /**
@@ -49,11 +54,7 @@ class EstadoController extends CustomController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome'    => 'bail|required|max:50|min:3',
-            'uf'      => 'bail|required|max:2|min:2',
-            'pais_id' => 'bail|required|exists:paises,id'
-        ]);
+        $request->validate($this->validation);
 
         $estado = new Estado([
             'nome'    => $request->get('nome'),
@@ -62,7 +63,7 @@ class EstadoController extends CustomController
         ]);
 
         $estado->save();
-        return redirect('/estado')->with('success', 'Registro adicionado!');
+        return parent::redirect();
     }
 
     /**
@@ -75,7 +76,7 @@ class EstadoController extends CustomController
     {
         $paises = App\Pais::all(['id', 'nome']);
 
-        return parent::view('estado.edit', compact('estado', 'paises'));
+        return parent::view($this->prefix . '.edit', compact('estado', 'paises'));
     }
 
     /**
@@ -87,18 +88,14 @@ class EstadoController extends CustomController
      */
     public function update(Request $request, Estado $estado)
     {
-        $request->validate([
-            'nome'    => 'bail|required|max:50|min:3',
-            'uf'      => 'bail|required|max:2|min:2',
-            'pais_id' => 'bail|required|exists:paises,id'
-        ]);
+        $request->validate($this->validation);
 
         $estado->nome    = $request->get('nome');
         $estado->uf      = strtoupper($request->get('uf'));
         $estado->pais_id = $request->get('pais_id');
         $estado->save();
 
-        return redirect('/estado')->with('success', 'Registro atualizado!');
+        return parent::redirect();
     }
 
     /**
@@ -112,6 +109,6 @@ class EstadoController extends CustomController
     {
         $estado->delete();
 
-        return redirect('/estado')->with('success', 'Registro apagado!');
+        return parent::redirect();
     }
 }

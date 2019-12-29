@@ -11,6 +11,10 @@ class PaisController extends CustomController
 {
     protected $title = 'País';
     protected $prefix = 'pais';
+    protected $validation = [
+        'nome' => 'bail|required|between:3,50|unique:paises',
+        'sigla' => 'bail|required|size:3|unique:paises'
+    ];
 
     /**
      * Display a listing of the resource.
@@ -26,35 +30,22 @@ class PaisController extends CustomController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return parent::view('pais.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param Request $req
+     * @param Request $request
      * @return Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        $req->validate([
-            'nome' => 'bail|required|max:50|unique:paises',
-            'sigla' => 'bail|required|max:3'
-        ]);
+        $request->validate($this->validation);
 
         $pais = new Pais([
-            'nome' => $req->get('nome'),
-            'sigla' => $req->get('sigla')
+            'nome' => $request->get('nome'),
+            'sigla' => $request->get('sigla')
         ]);
 
         $pais->save();
-        return redirect('/pais')->with('success', 'Registro adicionado!');
+        return parent::redirect();
     }
 
     /**
@@ -65,28 +56,28 @@ class PaisController extends CustomController
      */
     public function edit(Pais $pais)
     {
-        return parent::view('pais.edit', compact('pais'));
+        return parent::view($this->prefix . '.edit', compact('pais'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $req
+     * @param Request $request
      * @param Pais $pais
      * @return Response
      */
-    public function update(Request $req, Pais $pais)
+    public function update(Request $request, Pais $pais)
     {
-        $req->validate([
-            'nome' => 'bail|required|max:50|unique:paises,nome,' . $pais->id . ',id',
-            'sigla' => 'bail|required|max:3'
-        ]);
+        $validation = $this->validation;
+        $validation['nome'] = 'bail|required|between:3,50|unique:paises,nome,' . $pais->id . ',id';
+        $validation['sigla'] = 'bail|required|size:3|unique:paises,sigla,' . $pais->id . ',id';
+        $request->validate($validation);
 
-        $pais->nome = $req->get('nome');
-        $pais->sigla = $req->get('sigla');
+        $pais->nome = $request->get('nome');
+        $pais->sigla = $request->get('sigla');
         $pais->save();
 
-        return redirect('/pais')->with('success', 'Registro atualizado!');
+        return parent::redirect();
     }
 
     /**
@@ -100,6 +91,6 @@ class PaisController extends CustomController
     {
         $pais->delete();
 
-        return redirect('/pais')->with('success', 'Registro apagado!');
+        return parent::redirect();
     }
 }

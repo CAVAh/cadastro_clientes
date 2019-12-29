@@ -20,7 +20,7 @@ function createDefaultRoutes($prefix, $controller = null)
             $c = $controller;
         }
     } else {
-        $c = ucwords($prefix, '_') . 'Controller@';
+        $c = str_replace('_', '', ucwords($prefix, '_')) . 'Controller@';
     }
 
     Route::get('/', ['as' => 'index', 'uses' => $c . 'index']);
@@ -40,7 +40,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/roles-permissions', 'HomeController@rolesPermissions');
 
-$prefixs = ['pais', 'estado', 'categoria', 'quarto', 'cidade'];
+$prefixs = ['pais', 'estado', 'categoria', 'quarto', 'cidade', 'portador', 'tipo_hospedagem', 'profissao', 'bairro', 'grupo_hospedagem'];
 
 foreach ($prefixs as $prefix) {
     Route::group(['prefix' => $prefix, 'as' => $prefix . '.'], function () use ($prefix) {

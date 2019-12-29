@@ -12,6 +12,10 @@ class QuartoController extends CustomController
 {
     protected $title = 'Quarto';
     protected $prefix = 'quarto';
+    protected $validation = [
+        'nome' => 'bail|required|max:50',
+        'categoria_id' => 'bail|required|exists:categorias,id'
+    ];
 
     /**
      * Display a listing of the resource.
@@ -20,9 +24,9 @@ class QuartoController extends CustomController
      */
     public function index()
     {
-        $values = DB::table('quartos', 'q')
-            ->join('categorias', 'categorias.id', '=', 'q.categoria_id')
-            ->selectRaw('q.id, q.categoria_id, q.nome')
+        $values = DB::table('quartos')
+            ->join('categorias', 'categorias.id', '=', 'quartos.categoria_id')
+            ->selectRaw('quartos.id, quartos.categoria_id, quartos.nome')
             ->selectRaw('CASE WHEN multiplas_hosp = 1 THEN "Sim" ELSE "Não" END as multiplas_hosp, categorias.nome as categoria')->paginate();
 
         return parent::viewItems('layouts.index', $values->items());
@@ -37,7 +41,7 @@ class QuartoController extends CustomController
     {
         $categorias = App\Categoria::all(['id', 'nome']);
 
-        return parent::view('quarto.create', ['categorias' => $categorias]);
+        return parent::view($this->prefix . '.create', ['categorias' => $categorias]);
     }
 
     /**
@@ -48,10 +52,7 @@ class QuartoController extends CustomController
      */
     public function store(Request $req)
     {
-        $req->validate([
-            'nome' => 'bail|required|max:50',
-            'categoria_id' => 'bail|required|exists:categorias,id'
-        ]);
+        $req->validate($this->validation);
 
         $multiplas_hosp = 0;
         if ($req->has('multiplas_hosp')) {
@@ -65,7 +66,7 @@ class QuartoController extends CustomController
         ]);
 
         $quarto->save();
-        return redirect('/quarto')->with('success', 'Registro adicionado!');
+        return parent::redirect();
     }
 
     /**
@@ -78,7 +79,7 @@ class QuartoController extends CustomController
     {
         $categorias = App\Categoria::all(['id', 'nome']);
 
-        return parent::view('quarto.edit', compact('quarto', 'categorias'));
+        return parent::view($this->prefix . '.edit', compact('quarto', 'categorias'));
     }
 
     /**
@@ -90,10 +91,7 @@ class QuartoController extends CustomController
      */
     public function update(Request $req, Quarto $quarto)
     {
-        $req->validate([
-            'nome' => 'bail|required|max:50',
-            'categoria_id' => 'bail|required|exists:categorias,id'
-        ]);
+        $req->validate($this->validation);
 
         $multiplas_hosp = 0;
         if ($req->has('multiplas_hosp')) {
@@ -105,7 +103,7 @@ class QuartoController extends CustomController
         $quarto->multiplas_hosp = $multiplas_hosp;
         $quarto->save();
 
-        return redirect('/quarto')->with('success', 'Registro atualizado!');
+        return parent::redirect();
     }
 
     /**
@@ -119,6 +117,6 @@ class QuartoController extends CustomController
     {
         $quarto->delete();
 
-        return redirect('/quarto')->with('success', 'Registro apagado!');
+        return parent::redirect();
     }
 }

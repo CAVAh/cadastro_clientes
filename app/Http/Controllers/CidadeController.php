@@ -13,6 +13,13 @@ class CidadeController extends CustomController
 {
     protected $title = 'Cidade';
     protected $prefix = 'cidade';
+    protected $validation = [
+        'nome'       => 'bail|required|between:3,50',
+        'ddd'        => 'bail|required|integer|between:11,99',
+        'estado_id'  => 'bail|required|exists:estados,id',
+        'cep_padrao' => 'nullable|cep',
+        'cod_ibge'   => 'nullable|integer|between:0000000,9999999'
+    ];
 
     /**
      * Display a listing of the resource.
@@ -38,66 +45,69 @@ class CidadeController extends CustomController
     {
         $estados = Estado::all(['id', 'nome']);
 
-        return parent::view($this->prefix . '.create', ['estados' => $estados]);
+        return parent::view($this->prefix.'.create', ['estados' => $estados]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome'    => 'bail|required|max:50|min:3',
-            'ddd'      => 'bail|required|max:2|min:2',
-            'estado_id' => 'bail|required|exists:estados,id',
-            'cep_padrao' => 'integer|max:8',
-            'cod_ibge' => 'integer|max:5'
-        ]);
+        $request->validate($this->validation);
 
         $cidade = new Cidade([
-            'nome'    => $request->get('nome'),
-            'ddd'      => $request->get('ddd'),
-            'estado_id' => $request->get('estado_id'),
-            'cep_padrao' => $request->get('cep_padrao'),
-            'cod_ibge' => $request->get('cod_ibge')
+            'nome'       => $request->get('nome'),
+            'ddd'        => $request->get('ddd'),
+            'estado_id'  => $request->get('estado_id'),
+            'cep_padrao' => preg_replace('/\D/', '', $request->get('cep_padrao')),
+            'cod_ibge'   => $request->get('cod_ibge')
         ]);
 
         $cidade->save();
-        return redirect('/' . $this->prefix)->with('success', __('Record added!'));
+        return parent::redirect();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Cidade $cidade
+     * @param  Cidade  $cidade
      * @return Response
      */
     public function edit(Cidade $cidade)
     {
         $estados = Estado::all(['id', 'nome']);
 
-        return parent::view($this->prefix . '.edit', compact('cidade', 'estados'));
+        return parent::view($this->prefix.'.edit', compact('cidade', 'estados'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Cidade $cidade
+     * @param  Request  $request
+     * @param  Cidade  $cidade
      * @return Response
      */
     public function update(Request $request, Cidade $cidade)
     {
+        $request->validate($this->validation);
 
+        $cidade->nome       = $request->get('nome');
+        $cidade->ddd        = $request->get('ddd');
+        $cidade->estado_id  = $request->get('estado_id');
+        $cidade->cep_padrao = preg_replace('/\D/', '', $request->get('cep_padrao'));
+        $cidade->cod_ibge   = $request->get('cod_ibge');
+
+        $cidade->save();
+        return parent::redirect();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Cidade $cidade
+     * @param  Cidade  $cidade
      * @return Response
      * @throws Exception
      */
@@ -105,6 +115,6 @@ class CidadeController extends CustomController
     {
         $cidade->delete();
 
-        return redirect('/' . $this->prefix)->with('success', __('Record deleted'));
+        return parent::redirect();
     }
 }
