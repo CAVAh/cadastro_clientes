@@ -55,7 +55,7 @@ class GrupoHospedagemController extends CustomController
             'data_entrada' => $request->get('data_entrada'),
             'data_saida'   => $request->get('data_saida'),
             'obs'          => $request->get('obs'),
-            'valor_quarto' => $request->get('valor_quarto')
+            'valor_quarto' => $request->get('valor_quarto'),
         ]);
 
         $grupoHospedagem->save();

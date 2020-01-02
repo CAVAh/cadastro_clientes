@@ -15,8 +15,8 @@ class CreateGrupoHospedagensTable extends Migration
     {
         Schema::create('grupo_hospedagens', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedTinyInteger('tipo_id');
-            $table->unsignedTinyInteger('portador_id');
+            $table->unsignedTinyInteger('tipo_id')->nullable();
+            $table->unsignedTinyInteger('portador_id')->nullable();
             $table->string('nome', 50)->unique();
             $table->date('data_entrada')->nullable();
             $table->date('data_saida')->nullable();
