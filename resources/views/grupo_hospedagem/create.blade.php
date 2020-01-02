@@ -16,7 +16,7 @@
                     <select class="form-control" id="tipo_id" name="tipo_id">
                         <option value="">--- Selecione ---</option>
                         @foreach($tipo_hospedagens as $tipo)
-                            <option value="{{ $tipo->id }}" {{ old('tipo_id') ? (old('$tipo_id') === $tipo->tipo_id ? 'selected' : '') : '' }}>{{ $tipo->nome }}</option>
+                            <option value="{{ $tipo->id }}" {{ old('tipo_id') ? (old('tipo_id') === $tipo->id ? 'selected' : '') : '' }}>{{ $tipo->nome }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -26,7 +26,7 @@
                     <select class="form-control" id="portador_id" name="portador_id">
                         <option value="">--- Selecione ---</option>
                         @foreach($portadores as $portador)
-                            <option value="{{ $portador->id }}" {{ old('portador_id') ? (old('$portador_id') === $portador->portador_id ? 'selected' : '') : '' }}>{{ $portador->nome }}</option>
+                            <option value="{{ $portador->id }}" {{ old('portador_id') ? (old('portador_id') === $portador->id ? 'selected' : '') : '' }}>{{ $portador->nome }}</option>
                         @endforeach
                     </select>
                 </div>

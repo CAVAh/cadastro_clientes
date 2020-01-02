@@ -50,8 +50,8 @@ class Cliente extends CustomModel
         'hospedou',
     ];
     protected $hidden = [
-        'rg', 'portador_id', 'sexo', 'endereco', 'cidade_id', 'bairro_id', 'cep', 'fone', 'celular', 'celular2', 'email', 'obs', 'cpf_conferido', 'verificado',
-        'hospedou'
+        'rg', 'profissao_id', 'sexo', 'endereco', 'cidade_id', 'bairro_id', 'cep', 'fone', 'celular', 'celular2',
+        'email', 'obs', 'cpf_conferido', 'verificado', 'hospedou'
     ];
 
     public function format()

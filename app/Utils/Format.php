@@ -120,4 +120,15 @@ class Format
     {
         return substr($cep, 0, 5).'-'.substr($cep, 5);
     }
+
+    /**
+     * Remove todos os caracteres especiais, deixando somente os caracteres númericos (inteiro).
+     *
+     * @param string $str Texto a ser limpado
+     *
+     * @return string Texto limpo
+     */
+    public static function clearNumber($str) {
+        return preg_replace('/[^0-9]/', '', $str);
+    }
 }

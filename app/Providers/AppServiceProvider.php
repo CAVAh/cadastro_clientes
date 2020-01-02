@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Validator::extend('cpf', '\App\Utils\CpfValidation@validate');
         Validator::extend('cep', '\App\Utils\CepValidation@validate');
+        Validator::extend('phone', '\App\Utils\PhoneValidation@validate');
+        Validator::extend('cellphone', '\App\Utils\CellphoneValidation@validate');
     }
 }

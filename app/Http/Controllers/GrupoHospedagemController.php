@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App;
 use App\GrupoHospedagem;
+use App\Http\Requests\GrupoHospedagemRequest;
+use App\Portador;
+use App\TipoHospedagem;
+use App\Utils\Format;
 use Exception;
-use Illuminate\Http\{Request, Response};
+use Illuminate\Http\Response;
 
 class GrupoHospedagemController extends CustomController
 {
@@ -31,19 +34,19 @@ class GrupoHospedagemController extends CustomController
      */
     public function create()
     {
-        $tipo_hospedagens = App\TipoHospedagem::all(['id', 'nome']);
-        $portadores       = App\Portador::all(['id', 'nome']);
+        $tipo_hospedagens = TipoHospedagem::all(['id', 'nome']);
+        $portadores       = Portador::all(['id', 'nome']);
 
-        return parent::view($this->prefix.'.create', compact('tipo_hospedagens', 'portadores'));
+        return parent::view($this->prefix . '.create', compact('tipo_hospedagens', 'portadores'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\GrupoHospedagemRequest  $request
+     * @param GrupoHospedagemRequest $request
      * @return Response
      */
-    public function store(App\Http\Requests\GrupoHospedagemRequest $request)
+    public function store(GrupoHospedagemRequest $request)
     {
         $grupoHospedagem = new GrupoHospedagem([
             'tipo_id'      => $request->get('tipo_id'),
@@ -58,30 +61,31 @@ class GrupoHospedagemController extends CustomController
         $grupoHospedagem->save();
         return parent::redirect();
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  GrupoHospedagem  $grupoHospedagem
+     * @param GrupoHospedagem $grupoHospedagem
      * @return Response
      */
     public function edit(GrupoHospedagem $grupoHospedagem)
     {
-        $tipo_hospedagens = App\TipoHospedagem::all(['id', 'nome']);
-        $portadores       = App\Portador::all(['id', 'nome']);
-        $grupoHospedagem->data_entrada = App\Utils\Format::dateToStr($grupoHospedagem->data_entrada);
-        $grupoHospedagem->data_saida = App\Utils\Format::dateToStr($grupoHospedagem->data_saida);
+        $tipo_hospedagens              = TipoHospedagem::all(['id', 'nome']);
+        $portadores                    = Portador::all(['id', 'nome']);
+        $grupoHospedagem->data_entrada = Format::dateToStr($grupoHospedagem->data_entrada);
+        $grupoHospedagem->data_saida   = Format::dateToStr($grupoHospedagem->data_saida);
 
-        return parent::view($this->prefix.'.edit', compact('grupoHospedagem', 'tipo_hospedagens', 'portadores'));
+        return parent::view($this->prefix . '.edit', compact('grupoHospedagem', 'tipo_hospedagens', 'portadores'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\GrupoHospedagemRequest  $request
-     * @param  GrupoHospedagem  $grupoHospedagem
+     * @param GrupoHospedagemRequest $request
+     * @param GrupoHospedagem $grupoHospedagem
      * @return Response
      */
-    public function update(App\Http\Requests\GrupoHospedagemRequest $request, GrupoHospedagem $grupoHospedagem)
+    public function update(GrupoHospedagemRequest $request, GrupoHospedagem $grupoHospedagem)
     {
         $grupoHospedagem->tipo_id      = $request->get('tipo_id');
         $grupoHospedagem->portador_id  = $request->get('portador_id');
@@ -98,7 +102,7 @@ class GrupoHospedagemController extends CustomController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  GrupoHospedagem  $grupoHospedagem
+     * @param GrupoHospedagem $grupoHospedagem
      * @return Response
      * @throws Exception
      */

@@ -17,13 +17,13 @@ class CreateClientesTable extends Migration
             $table->increments('id');
             $table->string('nome', 80);
             $table->string('rg', 13)->nullable();
-            $table->string('cpf', 11)->nullable();
-            $table->integer('profissao_id')->nullable();
+            $table->string('cpf', 14)->nullable();
+            $table->unsignedInteger('profissao_id')->nullable();
             $table->date('data_nasc')->nullable();
             $table->enum('sexo', ['F', 'M']);
             $table->string('endereco', 100)->nullable();
-            $table->integer('cidade_id')->nullable();
-            $table->integer('bairro_id')->nullable();
+            $table->unsignedInteger('cidade_id')->nullable();
+            $table->unsignedInteger('bairro_id')->nullable();
             $table->integer('cep')->nullable();
             $table->string('fone', 14)->nullable();
             $table->string('celular', 15)->nullable();

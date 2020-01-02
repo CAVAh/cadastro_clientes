@@ -31,7 +31,7 @@
                     <select class="form-control" id="estado_id" name="estado_id">
                         <option value="">--- Selecione ---</option>
                         @foreach($estados as $estado)
-                            <option value="{{ $estado->id }}" {{ old('estado_id') ? (old('$estado_id') === $estado->estado_id ? 'selected' : '') : '' }}>{{ $estado->nome }}</option>
+                            <option value="{{ $estado->id }}" {{ old('estado_id') ? (old('estado_id') === $estado->id ? 'selected' : '') : '' }}>{{ $estado->nome }}</option>
                         @endforeach
                     </select>
                 </div>

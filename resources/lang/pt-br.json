@@ -1,7 +1,7 @@
 {
     "Search": "Pesquisar",
     "Add": "Adicionar",
-    "Delete":  "Excluir",
+    "Delete": "Excluir",
     "Success": "Sucesso",
     "No records found": "Nenhum registro encontrado",
     "Actions": "Ações",
@@ -9,5 +9,14 @@
     "Save": "Salvar",
     "Record deleted!": "Registro apagado!",
     "Record added!": "Registro adicionado!",
-    "Record updated!": "Registro atualizado!"
+    "Record updated!": "Registro atualizado!",
+    "Register": "Registrar",
+    "Name": "Nome",
+    "E-Mail Address": "Endereço de E-mail",
+    "Password": "Senha",
+    "Confirm Password": "Confirmar Senha",
+    "Remember Me": "Lembrar-me",
+    "Forgot Your Password?": "Esqueceu sua senha?",
+    "Reset Password": "Redefinir senha",
+    "Send Password Reset Link": "Enviar link de redefinição de senha"
 }

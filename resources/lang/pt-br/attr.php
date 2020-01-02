@@ -28,5 +28,20 @@ return [
     'obs'             => 'Observações',
     'bairro'          => 'Bairro',
     'profissao'       => 'Profissão',
-    'grupo'           => 'Grupo'
+    'grupo'           => 'Grupo',
+    'rg'              => 'RG',
+    'cpf'             => 'CPF',
+    'profissao_id'    => 'Profissão',
+    'data_nasc'       => 'Data Nascimento',
+    'sexo'            => 'Sexo',
+    'sexoM'           => 'Masculino',
+    'sexoF'           => 'Feminino',
+    'endereco'        => 'Endereço',
+    'cidade_id'       => 'Cidade',
+    'bairro_id'       => 'Bairro',
+    'cep'             => 'CEP',
+    'fone'            => 'Telefone',
+    'celular'         => 'Celular',
+    'celular2'        => 'Celular 2',
+    'email'           => 'E-mail'
 ];

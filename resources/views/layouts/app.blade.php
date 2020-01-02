@@ -32,34 +32,37 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pais.index') }}">{{ __('attr.pais') }}</a>
+                            <a class="nav-link" href="{{ route('pais.index') }}">{{ __('País') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('estado.index') }}">{{ __('attr.estado') }}</a>
+                            <a class="nav-link" href="{{ route('estado.index') }}">{{ __('Estado') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cidade.index') }}">{{ __('attr.cidade') }}</a>
+                            <a class="nav-link" href="{{ route('cidade.index') }}">{{ __('Cidade') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categoria.index') }}">{{ __('attr.categoria') }}</a>
+                            <a class="nav-link" href="{{ route('categoria.index') }}">{{ __('Categoria') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('quarto.index') }}">{{ __('attr.quarto') }}</a>
+                            <a class="nav-link" href="{{ route('quarto.index') }}">{{ __('Quarto') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('portador.index') }}">{{ __('attr.portador') }}</a>
+                            <a class="nav-link" href="{{ route('portador.index') }}">{{ __('Portador') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tipo_hospedagem.index') }}">{{ __('attr.tipo_hospedagem') }}</a>
+                            <a class="nav-link" href="{{ route('tipo_hospedagem.index') }}">{{ __('Tipo Hospedagem') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profissao.index') }}">{{ __('attr.profissao') }}</a>
+                            <a class="nav-link" href="{{ route('profissao.index') }}">{{ __('Profissão') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('bairro.index') }}">{{ __('attr.bairro') }}</a>
+                            <a class="nav-link" href="{{ route('bairro.index') }}">{{ __('Bairro') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('grupo_hospedagem.index') }}">{{ __('attr.grupo') }}</a>
+                            <a class="nav-link" href="{{ route('grupo_hospedagem.index') }}">{{ __('Grupo') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cliente.index') }}">{{ __('Cliente') }}</a>
                         </li>
                     </ul>
 

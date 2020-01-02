@@ -13,16 +13,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class GrupoHospedagemRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -49,7 +39,7 @@ class GrupoHospedagemRequest extends FormRequest
     {
         $merge = [];
 
-        if($this->valor_quarto) {
+        if ($this->valor_quarto) {
             $merge['valor_quarto'] = Format::strToFloat($this->valor_quarto);
         }
 
@@ -73,14 +63,14 @@ class GrupoHospedagemRequest extends FormRequest
 
     public function after()
     {
-        if($this->validated()) {
+        if ($this->validated()) {
             $merge = [];
 
-            if($this->data_saida) {
+            if ($this->data_saida) {
                 $merge['data_saida'] = Format::strToDate($this->data_saida);
             }
 
-            if($this->data_entrada) {
+            if ($this->data_entrada) {
                 $merge['data_entrada'] = Format::strToDate($this->data_entrada);
             }
 
