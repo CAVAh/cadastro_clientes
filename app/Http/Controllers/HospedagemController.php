@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Bairro;
 use App\GrupoHospedagem;
 use App\Hospedagem;
+use App\Http\Requests\HospedagemRequest;
 use App\Portador;
 use App\Quarto;
 use App\TipoHospedagem;
 use App\Utils\Format;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class HospedagemController extends CustomController
 {
@@ -24,9 +26,12 @@ class HospedagemController extends CustomController
      */
     public function index()
     {
-        $values = Hospedagem::paginate();
+        $values = DB::table('hospedagens')
+            ->join('quartos', 'quartos.id', '=', 'hospedagens.quarto_id')
+            ->selectRaw('hospedagens.*, quartos.nome')
+            ->selectRaw('CASE WHEN conferido = 1 THEN "Sim" ELSE "Não" END as conferido')->paginate();
 
-        return parent::view('layouts.index', ['values' => $values, 'class' => Hospedagem::class]);
+        return parent::viewItems('layouts.index', $values->items());
     }
 
     /**
@@ -47,12 +52,11 @@ class HospedagemController extends CustomController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param HospedagemRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(HospedagemRequest $request)
     {
-        // TODO: Request complexo
         $hospedagem = new Hospedagem([
             'quarto_id'    => $request->get('quarto_id'),
             'tipo_id'      => $request->get('tipo_id'),
@@ -91,13 +95,12 @@ class HospedagemController extends CustomController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param HospedagemRequest $request
      * @param Hospedagem $hospedagem
      * @return Response
      */
-    public function update(Request $request, Hospedagem $hospedagem)
+    public function update(HospedagemRequest $request, Hospedagem $hospedagem)
     {
-        // TODO: Request complexo
         $hospedagem->quarto_id    = $request->get('quarto_id');
         $hospedagem->tipo_id      = $request->get('tipo_id');
         $hospedagem->portador_id  = $request->get('portador_id');

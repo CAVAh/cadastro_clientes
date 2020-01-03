@@ -10650,3 +10650,8 @@ a.text-dark:focus {
   padding: 0;
 }
 
+input[type=checkbox],
+.form-check label {
+  cursor: pointer;
+}
+

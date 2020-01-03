@@ -43,5 +43,11 @@ return [
     'fone'            => 'Telefone',
     'celular'         => 'Celular',
     'celular2'        => 'Celular 2',
-    'email'           => 'E-mail'
+    'email'           => 'E-mail',
+    'quarto_id'       => 'Quarto',
+    'grupo_id'        => 'Grupo',
+    'valtotal'        => 'Valor Total',
+    'nro_reserva'     => 'Nº Reserva',
+    'conferido'       => 'Conferido',
+    'quarto_nome'     => 'Quarto'
 ];

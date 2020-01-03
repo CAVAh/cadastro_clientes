@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ficha Cadastral</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container mt-3">
+        <h1 class="text-center">Ficha Cadastral</h1>
+        <form id="form" action="" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome Completo" autocomplete="off" required>
+                </div>
+                <div class="form-group col-9 col-sm-6 col-md-3 ml-2 mr-n2">
+                    <label for="profissao">Sexo</label>
+                    <div class="mt-2">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="sexo" id="sexo_m" value="M" required>
+                            <label class="form-check-label" for="sexo_m">Masculino</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="sexo" id="sexo_f" value="F">
+                            <label class="form-check-label" for="sexo_f">Feminino</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-3 col-sm-6 col-md-2">
+                    <label for="nro_apto">Nº Apto</label>
+                    <input type="number" class="form-control" id="nro_apto" placeholder="Apto" maxlength="3" oninput="this.value=this.value.slice(0,this.maxLength)" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-4 col-md-4">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control cpf" id="cpf" placeholder="CPF" autocomplete="off">
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label for="identidade">Identidade</label>
+                    <input type="text" class="form-control" id="identidade" placeholder="Identidade">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="data_nasc">Data de Nascimento</label>
+                    <input type="text" class="form-control date" id="data_nasc" placeholder="Data de Nascimento">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="profissao">Profissão</label>
+                    <input type="text" class="form-control" id="profissao" placeholder="Profissão">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="route">Endereço Residencial</label>
+                    <input type="text" class="form-control" id="route" placeholder="Endereço">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="sublocality_level_1">Bairro</label>
+                    <input type="text" class="form-control" id="sublocality_level_1" placeholder="Bairro">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-10 col-md-5">
+                    <label for="administrative_area_level_2">Cidade</label>
+                    <input type="text" class="form-control" id="administrative_area_level_2" placeholder="Cidade">
+                </div>
+                <div class="form-group col-2 col-md-1">
+                    <label for="administrative_area_level_1">UF</label>
+                    <input type="text" class="form-control" id="administrative_area_level_1" placeholder="UF" maxlength="2">
+                </div>
+                <div class="form-group col-6 col-md-2">
+                    <label for="postal_code">CEP</label>
+                    <input type="text" class="form-control cep" id="postal_code" placeholder="CEP">
+                </div>
+                <div class="form-group col-6 col-md-4 autocomplete">
+                    <label for="country">País</label>
+                    <input type="text" class="form-control" id="country" name="pais" placeholder="Pais" value="Brasil">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-4">
+                    <label for="fone">Telefone</label>
+                    <input type="text" class="form-control phone" id="fone" placeholder="Telefone">
+                </div>
+                <div class="form-group col-6 col-sm-4">
+                    <label for="celular1">Celular 1</label>
+                    <input type="text" class="form-control cellphone" id="celular1" placeholder="Celular 1">
+                </div>
+                <div class="form-group col-6 col-sm-4">
+                    <label for="celular2">Celular 2</label>
+                    <input type="text" class="form-control cellphone" id="celular2" placeholder="Celular 2">
+                </div>
+            </div>
+            <hr>
+            <fieldset class="form-group">
+                <legend>Acompanhantes</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="nome_a1"><span>1</span> - Nome Completo</label>
+                        <input type="text" class="form-control" id="nome_a1" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group col-6 col-md-3">
+                        <label for="cpf_a1">CPF</label>
+                        <input type="text" class="form-control cpf" id="cpf_a1" placeholder="CPF" autocomplete="off">
+                    </div>
+                    <div class="form-group col-6 col-md-2">
+                        <label for="data_nasc_a1"><span class="d-none d-sm-inline d-md-none">Data de </span>Nascimento</label>
+                        <input type="text" class="form-control date" id="data_nasc_a1" placeholder="Data de Nascimento">
+                    </div>
+                    <!--<div class="form-group col-md-1">
+                        <label>&nbsp;</label>
+                        <button type="button" class="form-control btn btn-primary">+</button>
+                    </div>-->
+                </div>
+				<hr class="d-block d-md-none">
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="nome_a2"><span>2</span> - Nome Completo</label>
+                        <input type="text" class="form-control" id="nome_a2" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group col-6 col-md-3">
+                        <label for="cpf_a2">CPF</label>
+                        <input type="text" class="form-control cpf" id="cpf_a2" placeholder="CPF">
+                    </div>
+                    <div class="form-group col-6 col-md-2">
+                        <label for="data_nasc_a2"><span class="d-none d-sm-inline d-md-none">Data de </span>Nascimento</label>
+                        <input type="text" class="form-control date" id="data_nasc_a2" placeholder="Data de Nascimento">
+                    </div>
+                </div>
+				<hr class="d-block d-md-none">
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="nome_a3"><span>3</span> - Nome Completo</label>
+                        <input type="text" class="form-control" id="nome_a3" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group col-6 col-md-3">
+                        <label for="cpf_a3">CPF</label>
+                        <input type="text" class="form-control cpf" id="cpf_a3" placeholder="CPF">
+                    </div>
+                    <div class="form-group col-6 col-md-2">
+                        <label for="data_nasc_a3"><span class="d-none d-sm-inline d-md-none">Data de </span>Nascimento</label>
+                        <input type="text" class="form-control date" id="data_nasc_a3" placeholder="Data de Nascimento">
+                    </div>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <br>
+            <br>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+            integrity="sha256-Kg2zTcFO9LXOc7IwcBx1YeUBJmekycsnTsq2RuFHSZU=" crossorigin="anonymous"></script>
+    <script src="js/const.js"></script>
+    <script src="js/script.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeZV95V3hr_3QIgr756MDJNX2v73oC7cs&libraries=places&callback=initAutocomplete&language=pt-BR"
+            async defer></script>-->
+</body>
+</html>
+<!--Nome 11 - Nº Apto 1<br>
+CPF 6 - Identidade 6                  <br>
+Profissão 8 - Nascimento 4            <br>
+Endereço Res. 12                      <br>
+Cidade 8 - Estado 1 - CEP 2           <br>
+Fone Res. 6 - Celular 6               <br>
+E-mail 12                             <br>
+Acompanhantes                         <br>
+01 6 - CPF 4 - Nasc 2                 <br>
+02 6 - CPF 4 - Nasc 2                 <br>
+03 6 - CPF 4 - Nasc 2                 <br>
+Entrada 6 - Saida 6                   <br>
+-->

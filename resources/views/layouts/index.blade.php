@@ -48,11 +48,17 @@
                     <thead>
                     <tr>
                         @foreach($values as $value)
-                            @foreach($value->getFillable() as $fill)
-                                @if(!in_array($fill, $value->getHidden()))
+                            @if(!empty($value->getVisible()))
+                                @foreach($value->getVisible() as $fill)
                                     <td>{{ __('attr.' . $fill) }}</td>
-                                @endif
-                            @endforeach
+                                @endforeach
+                            @else
+                                @foreach($value->getFillable() as $fill)
+                                    @if(!in_array($fill, $value->getHidden()))
+                                        <td>{{ __('attr.' . $fill) }}</td>
+                                    @endif
+                                @endforeach
+                            @endif
 
                             @canany(['edit-' . $prefix, 'destroy-' . $prefix], $class)
                                 <td>{{ __('Actions') }}</td>
@@ -66,11 +72,17 @@
                         @foreach($values as $value)
                             {{ $value->format() }}
                             <tr>
-                                @foreach($value->getFillable() as $fill)
-                                    @if(!in_array($fill, $value->getHidden()))
+                                @if(!empty($value->getVisible()))
+                                    @foreach($value->getVisible() as $fill)
                                         <td>{{ $value->{$fill} }}</td>
-                                    @endif
-                                @endforeach
+                                    @endforeach
+                                @else
+                                    @foreach($value->getFillable() as $fill)
+                                        @if(!in_array($fill, $value->getHidden()))
+                                            <td>{{ $value->{$fill} }}</td>
+                                        @endif
+                                    @endforeach
+                                @endif
 
                                 @canany(['edit-' . $prefix, 'destroy-' . $prefix], $class)
                                     <td class="d-inline-flex text-center">

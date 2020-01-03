@@ -32,16 +32,6 @@ class CreateHospedagensTable extends Migration
             $table->foreign('quarto_id')->references('id')->on('quartos');
             $table->foreign('grupo_id')->references('id')->on('grupo_hospedagens');
         });
-
-        Schema::create('hospedagem_cliente', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('hospedagem_id')->unsigned();
-            $table->integer('cliente_id')->unsigned();
-            $table->boolean('is_acompanhante');
-
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('hospedagem_id')->references('id')->on('hospedagens');
-        });
     }
 
     /**
@@ -52,6 +42,5 @@ class CreateHospedagensTable extends Migration
     public function down()
     {
         Schema::dropIfExists('hospedagens');
-        Schema::dropIfExists('hospedagem_cliente');
     }
 }

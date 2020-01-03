@@ -50,7 +50,7 @@
                             <a class="nav-link" href="{{ route('portador.index') }}">{{ __('Portador') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tipo_hospedagem.index') }}">{{ __('Tipo Hospedagem') }}</a>
+                            <a class="nav-link" href="{{ route('tipo_hospedagem.index') }}">{{ __('Tipo') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('profissao.index') }}">{{ __('Profissão') }}</a>
@@ -66,6 +66,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('hospedagem.index') }}">{{ __('Hospedagem') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('hospedagem_cliente.index') }}">{{ __('Hosp Cli') }}</a>
                         </li>
                     </ul>
 

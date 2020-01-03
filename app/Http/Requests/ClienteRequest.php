@@ -25,7 +25,7 @@ class ClienteRequest extends FormRequest
             'rg'            => 'bail|nullable',
             'cpf'           => 'bail|nullable|cpf',
             'profissao_id'  => 'bail|nullable|exists:profissoes,id',
-            'data_nasc'     => 'bail|nullable|date_format:d/m/Y',
+            'data_nasc'     => 'bail|nullable|date_format:d/m/Y|before:today',
             'sexo'          => 'bail|in:M,F',
             'endereco'      => 'bail|nullable',
             'cidade_id'     => 'bail|nullable|exists:cidades,id',

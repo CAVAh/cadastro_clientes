@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use Illuminate\Database\Eloquent\Collection;
+
 class FormEdit
 {
     /**
@@ -27,7 +29,7 @@ class FormEdit
         return '';
     }
 
-    public static function select($name, $items, $value, $id = 'id', $field = 'nome', $required = false)
+    public static function select($name, Collection $items, $value, $id = 'id', $field = 'nome', $required = false)
     {
         $required = $required ? 'required' : '';
 
@@ -58,6 +60,19 @@ class FormEdit
         return self::text($name, $value, 10, $required, $class);
     }
 
+    /**
+     * Criar um campo de dinheiro no formulário de criação
+     *
+     * @param string $name
+     * @param int $maxlength
+     * @param bool $required
+     * @return string
+     */
+    public static function money(string $name, $value, int $maxlength = 8, bool $required = false)
+    {
+        return self::text($name, $value, $maxlength, $required, 'money');
+    }
+
     public static function enum($name, $value, $enum, $required = false)
     {
         echo '
@@ -79,12 +94,31 @@ class FormEdit
         return '';
     }
 
+    public static function radio($name, $value, $enum, $required = false)
+    {
+        return self::enum($name, $value, $enum, $required);
+    }
+
     public static function textarea($name, $value)
     {
         echo '
         <div class="form-group">
             <label for="' . $name . '">' . __('attr.' . $name) . ':</label>
             <textarea id="' . $name . '" class="form-control" name="' . $name . '" rows="3">' . old($name, $value) . '</textarea>
+        </div>';
+
+        return '';
+    }
+
+    public static function checkbox(string $name, bool $checked, $required = false)
+    {
+        $required = $required ? 'required' : '';
+        $checked  = old($name) == 'on' ? 'checked' : ($checked ? 'checked' : '');
+
+        echo '
+        <div class="form-check">
+            <input type="checkbox" id="' . $name . '" name="' . $name . '" class="form-check-input" ' . $required . ' ' . $checked . '/>
+            <label for="' . $name . '">'. __('attr.' . $name) .'</label>
         </div>';
 
         return '';

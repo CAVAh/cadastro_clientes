@@ -6,11 +6,14 @@ use App\Utils\Format;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
+ * Class HospedagemRequest
+ * @package App\Http\Requests
+ * @property mixed valtotal
  * @property mixed data_entrada
  * @property mixed data_saida
- * @property mixed valor_quarto
+ * @property mixed conferido
  */
-class GrupoHospedagemRequest extends FormRequest
+class HospedagemRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -20,13 +23,15 @@ class GrupoHospedagemRequest extends FormRequest
     public function rules()
     {
         return [
+            'quarto_id'    => 'bail|exists:quartos,id',
             'tipo_id'      => 'bail|nullable|exists:tipo_hospedagens,id',
             'portador_id'  => 'bail|nullable|exists:portadores,id',
-            'nome'         => 'bail|required|between:3,50',
+            'grupo_id'     => 'bail|nullable|exists:grupo_hospedagens,id',
             'data_entrada' => 'bail|nullable|date_format:d/m/Y',
             'data_saida'   => 'bail|nullable|date_format:d/m/Y|after:data_entrada',
             'obs'          => 'bail|nullable',
-            'valor_quarto' => 'bail|nullable|numeric|min:0'
+            'nro_reserva'  => 'bail|nullable',
+            'valtotal'     => 'bail|nullable|numeric|min:0',
         ];
     }
 
@@ -39,8 +44,8 @@ class GrupoHospedagemRequest extends FormRequest
     {
         $merge = [];
 
-        if ($this->valor_quarto) {
-            $merge['valor_quarto'] = Format::strToFloat($this->valor_quarto);
+        if ($this->valtotal) {
+            $merge['valtotal'] = Format::strToFloat($this->valtotal);
         }
 
         $this->merge($merge);
@@ -74,6 +79,8 @@ class GrupoHospedagemRequest extends FormRequest
             if ($this->data_entrada) {
                 $merge['data_entrada'] = Format::strToDate($this->data_entrada);
             }
+
+            $merge['conferido'] = $this->conferido ? 1 : 0;
 
             $this->merge($merge);
         }

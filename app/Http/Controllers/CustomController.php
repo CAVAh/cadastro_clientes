@@ -65,6 +65,12 @@ class CustomController extends Controller
      */
     protected function view($view, $data = [])
     {
+        /*
+         * Para ajustar problemas de visualização ao chamar view() ao invés de viewItems()
+         * if(isset($data['values']->items()[0]) && $data['values']->items()[0] instanceof \stdClass) {
+            return self::viewItems($view, $data['values']->items(), $data);
+        }*/
+
         $viewData = ['title' => $this->title, 'prefix' => $this->prefix];
 
         if (!empty($data)) {
@@ -87,7 +93,7 @@ class CustomController extends Controller
         if (isset($data['class'])) {
             $class = $data['class'];
         } else {
-            $class         = 'App\\'.ucwords($this->prefix, '_');
+            $class         = 'App\\'.str_replace('_', '', ucwords($this->prefix, '_'));
             $data['class'] = $class;
         }
 

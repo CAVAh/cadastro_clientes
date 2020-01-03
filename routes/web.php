@@ -40,7 +40,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/roles-permissions', 'HomeController@rolesPermissions');
 
-$prefixs = ['pais', 'estado', 'categoria', 'quarto', 'cidade', 'portador', 'tipo_hospedagem', 'profissao', 'bairro', 'grupo_hospedagem', 'cliente', 'hospedagem'];
+$prefixs = ['pais', 'estado', 'categoria', 'quarto', 'cidade', 'portador', 'tipo_hospedagem',
+            'profissao', 'bairro', 'grupo_hospedagem', 'cliente', 'hospedagem', 'hospedagem_cliente'];
 
 foreach ($prefixs as $prefix) {
     Route::group(['prefix' => $prefix, 'as' => $prefix . '.'], function () use ($prefix) {
