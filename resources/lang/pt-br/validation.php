@@ -137,6 +137,9 @@ return [
         'date_format' => 'O campo :attribute não corresponde ao formato dd/mm/aaaa.',
     ],
 
+    'phone' => 'O campo :attribute não é um telefone válido.',
+    'cellphone' => 'O campo :attribute não é um celular válido.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

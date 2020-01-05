@@ -85,4 +85,9 @@ class HospedagemCliente extends CustomModel
 
         return parent::format();
     }
+
+    public function clientes()
+    {
+        return $this->belongsToMany(Cliente::class, $this->table);
+    }
 }

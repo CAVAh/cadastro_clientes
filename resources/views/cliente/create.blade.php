@@ -6,11 +6,15 @@
             <form method="post" action="{{ route($prefix . '.store') }}">
                 @csrf
 
+                @if ($errors->any())
+                {{ \App\Utils\FormCreate::setErrors($errors) }}
+                @endif
+
                 {{ \App\Utils\FormCreate::text('nome', 80, true) }}
 
                 {{ \App\Utils\FormCreate::text('rg', 12) }}
 
-                {{ \App\Utils\FormCreate::text('cpf', 11, false, 'cpf') }}
+                {{ \App\Utils\FormCreate::cpf('cpf', false) }}
 
                 {{ \App\Utils\FormCreate::select('profissao_id', $profissoes) }}
 

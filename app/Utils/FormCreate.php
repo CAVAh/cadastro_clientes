@@ -3,27 +3,41 @@
 namespace App\Utils;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 
 class FormCreate
 {
     /**
+     * @var MessageBag
+     */
+    private static $errors = '';
+
+    /**
      * Criar um campo de texto no formulário de criação
      *
-     * @param string $name
-     * @param int $maxlength
-     * @param bool $required
-     * @param string $class
+     * @param string  $name
+     * @param int     $maxlength
+     * @param bool    $required
+     * @param string  $class
+     * @param string  $classGroup
+     * @param string  $type
      * @return string
      */
-    public static function text(string $name, int $maxlength, bool $required = false, string $class = '')
+    public static function text(string $name, int $maxlength, bool $required = false, string $class = '', string $classGroup = '', string $type = 'text')
     {
         $defaultClass = 'form-control ';
-        $class        = trim($defaultClass . $class);
-        $required     = $required ? 'required' : '';
 
-        echo '<div class="form-group">
-            <label for="' . $name . '">' . __('attr.' . $name) . ':</label>
-            <input type="text" id="' . $name . '" name="' . $name . '" class="' . $class . '" maxlength="' . $maxlength . '" value="' . old($name) . '" ' . $required . '/>
+        if (self::$errors instanceof MessageBag) {
+            $class .= self::$errors->has($name) ? 'is-invalid' : '';
+        }
+
+        $class    = trim($defaultClass . $class);
+        $required = $required ? 'required' : '';
+
+        echo '<div class="form-group ' . $classGroup . '">
+            <label for="' . $name . '">' . __('attr.' . $name) . '</label>
+            <input type="' . $type . '" id="' . $name . '" name="' . $name . '" class="' . $class . '" maxlength="' . $maxlength . '" value="' . old($name) . '" ' . $required . '/>
         </div>';
 
         return '';
@@ -32,21 +46,29 @@ class FormCreate
     /**
      * Criar um campo de seleção no formulário de criação
      *
-     * @param string $name
-     * @param array|Collection $values
-     * @param string $id
-     * @param string $field
-     * @param bool $required
+     * @param string            $name
+     * @param array|Collection  $values
+     * @param string            $id
+     * @param string            $field
+     * @param bool              $required
+     * @param string            $classGroup
      * @return string
      */
-    public static function select(string $name, $values, string $id = 'id', string $field = 'nome', bool $required = false)
+    public static function select(string $name, $values, string $id = 'id', string $field = 'nome', bool $required = false, string $classGroup = '')
     {
         $required = $required ? 'required' : '';
+        $class    = 'form-control ';
+
+        if (self::$errors instanceof MessageBag) {
+            $class = self::$errors->has($name) ? 'is-invalid' : '';
+        }
+
+        $class = trim($class);
 
         echo
-            '<div class="form-group">
-                <label for="' . $name . '">' . __('attr.' . $name) . ':</label>
-                     <select class="form-control" id="' . $name . '" name="' . $name . '" ' . $required . '>
+            '<div class="form-group ' . $classGroup . '">
+                <label for="' . $name . '">' . __('attr.' . $name) . '</label>
+                     <select class="' . $class . '" id="' . $name . '" name="' . $name . '" ' . $required . '>
                          <option value="">--- Selecione ---</option>';
 
         if (!empty($values)) {
@@ -62,24 +84,95 @@ class FormCreate
         return '';
     }
 
+    public static function selectCol(string $name, $values, string $classGroup, bool $required = false)
+    {
+        return self::select($name, $values, 'id', 'nome', $required, $classGroup);
+    }
+
     /**
      * Criar um campo de data no formulário de criação
      *
-     * @param string $name
-     * @param bool $required
+     * @param string  $name
+     * @param bool    $required
+     * @param string  $classGroup
      * @return string
      */
-    public static function date(string $name, bool $required = false)
+    public static function date(string $name, bool $required = false, string $classGroup = '')
     {
-        return self::text($name, 10, $required, 'date');
+        return self::text($name, 10, $required, 'date placeholder', $classGroup);
+    }
+
+    /**
+     * Criar um campo de CPF no formulário de criação
+     *
+     * @param string  $name
+     * @param bool    $required
+     * @param string  $classGroup
+     * @return string
+     */
+    public static function cpf(string $name, bool $required = false, string $classGroup = '')
+    {
+        return self::text($name, 14, $required, 'cpf placeholder', $classGroup);
+    }
+
+    /**
+     * Criar um campo de CEP no formulário de criação
+     *
+     * @param string  $name
+     * @param bool    $required
+     * @param string  $classGroup
+     * @return string
+     */
+    public static function cep(string $name, bool $required = false, string $classGroup = '')
+    {
+        return self::text($name, 9, $required, 'cep placeholder', $classGroup);
+    }
+
+    /**
+     * Criar um campo de Telefone no formulário de criação
+     *
+     * @param string  $name
+     * @param bool    $required
+     * @param string  $classGroup
+     * @return string
+     */
+    public static function phone(string $name, bool $required = false, string $classGroup = '')
+    {
+        return self::text($name, 14, $required, 'phone placeholder', $classGroup);
+    }
+
+    /**
+     * Criar um campo de Telefone no formulário de criação
+     *
+     * @param string  $name
+     * @param bool    $required
+     * @param string  $classGroup
+     * @return string
+     */
+    public static function cellphone(string $name, bool $required = false, string $classGroup = '')
+    {
+        return self::text($name, 15, $required, 'cellphone placeholder', $classGroup);
+    }
+
+    /**
+     * Criar um campo de Telefone no formulário de criação
+     *
+     * @param string  $name
+     * @param bool    $required
+     * @param string  $classGroup
+     * @return string
+     */
+    public static function email(string $name, bool $required = false, string $classGroup = '')
+    {
+        return self::text($name, 100, $required, '', $classGroup, 'email');
     }
 
     /**
      * Criar um campo de dinheiro no formulário de criação
      *
-     * @param string $name
-     * @param int $maxlength
-     * @param bool $required
+     * @param string  $name
+     * @param int     $maxlength
+     * @param bool    $required
      * @return string
      */
     public static function money(string $name, int $maxlength = 8, bool $required = false)
@@ -90,16 +183,26 @@ class FormCreate
     /**
      * Criar um campo de enum (radio), por exemplo sexo, no formulário de criação
      *
-     * @param string $name
-     * @param array $enum
-     * @param bool $required
+     * @param string  $name
+     * @param array   $enum
+     * @param bool    $required
+     * @param string  $classGroup
+     * @param string  $classDiv
      * @return string
      */
-    public static function enum(string $name, array $enum, bool $required = false): string
+    public static function enum(string $name, array $enum, bool $required = false, string $classGroup = '', string $classDiv = null): string
     {
         echo '
-        <div class="form-group">
-            <label for="' . $name . '">' . __('attr.' . $name) . ':</label><br>';
+        <div class="form-group ' . $classGroup . '">
+            <label for="' . $name . '">' . __('attr.' . $name) . '</label><br>';
+
+        if (!is_null($classDiv)) {
+            if (!empty($classDiv)) {
+                echo '<div class="' . $classDiv . '">';
+            } else {
+                echo '<div>';
+            }
+        }
 
         foreach ($enum as $k => $item) {
             $required = $required && !$k ? 'required' : '';
@@ -112,6 +215,10 @@ class FormCreate
             </div>';
         }
 
+        if (!is_null($classDiv)) {
+            echo '</div>';
+        }
+
         echo '</div>';
         return '';
     }
@@ -119,9 +226,9 @@ class FormCreate
     /**
      * Alias para a função enum
      *
-     * @param string $name
-     * @param array $enum
-     * @param bool $required
+     * @param string  $name
+     * @param array   $enum
+     * @param bool    $required
      * @return string
      */
     public static function radio(string $name, array $enum, bool $required = false): string
@@ -131,15 +238,16 @@ class FormCreate
 
     /**
      * Criar um campo de textarea no formulário de criação
-     * @param string $name
+     * @param string  $name
+     * @param string  $classGroup
      * @return string
      */
-    public static function textarea(string $name): string
+    public static function textarea(string $name, string $classGroup = ''): string
     {
         echo '
-        <div class="form-group">
-            <label for="' . $name . '">' . __('attr.' . $name) . ':</label>
-            <textarea id="' . $name . '" class="form-control" name="' . $name . '" rows="3">' . old($name) . '</textarea>
+        <div class="form-group ' . $classGroup . '">
+            <label for="' . $name . '">' . __('attr.' . $name) . '</label>
+            <textarea id="' . $name . '" class="form-control" name="' . $name . '" rows="2">' . old($name) . '</textarea>
         </div>';
 
         return '';
@@ -148,8 +256,8 @@ class FormCreate
     /**
      * Criar um campo de checkbox no formulário de criação
      *
-     * @param string $name
-     * @param bool $required
+     * @param string  $name
+     * @param bool    $required
      * @return string
      */
     public static function checkbox(string $name, bool $required = false): string
@@ -160,8 +268,17 @@ class FormCreate
         echo '
         <div class="form-check">
             <input type="checkbox" id="' . $name . '" name="' . $name . '" class="form-check-input" ' . $required . ' ' . $checked . '/>
-            <label for="' . $name . '">'. __('attr.' . $name) .'</label>
+            <label for="' . $name . '">' . __('attr.' . $name) . '</label>
         </div>';
+
+        return '';
+    }
+
+    public static function setErrors($errors)
+    {
+        if ($errors instanceof ViewErrorBag) {
+            self::$errors = $errors->getBag('default');
+        }
 
         return '';
     }

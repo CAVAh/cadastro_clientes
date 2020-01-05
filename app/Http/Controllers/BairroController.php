@@ -65,7 +65,11 @@ class BairroController extends CustomController
      */
     public function update(Request $request, Bairro $bairro)
     {
-        $request->validate($this->validation);
+        $validation = [
+            'nome' => 'bail|required|between:3,50|unique:bairros,nome,' . $bairro->id . ',id'
+        ];
+
+        $request->validate($validation);
 
         $bairro->nome = $request->get('nome');
         $bairro->save();

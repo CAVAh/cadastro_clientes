@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Utils\Format;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed id
@@ -46,5 +45,10 @@ class Hospedagem extends CustomModel
         }
 
         return parent::format();
+    }
+
+    public function clientes()
+    {
+        return $this->belongsToMany(Cliente::class, 'hospedagem_clientes');
     }
 }

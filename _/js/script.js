@@ -246,10 +246,10 @@ function validarCPF(cpf) {
 
 $(document).ready(function () {
     $('.date').mask('00/00/0000', {placeholder: "__/__/____"});
-    $('.cep').mask('00000-000');
-    $('.phone').mask('(00) 0000-0000');
-    $('.cellphone').mask('(00) 00000-0000');
-    $('.cpf').mask('000.000.000-00').on('blur', function () {
+    $('.cep').mask('00000-000', {placeholder: "_____-___"});
+    $('.phone').mask('(00) 0000-0000', {placeholder: '(__) ____-____'});
+    $('.cellphone').mask('(00) 00000-0000', {placeholder: '(__) _____-____'});
+    $('.cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"}).on('blur', function () {
         const $cpf = $(this);
         const cpf = $cpf.val();
         $cpf.removeClass('is-valid is-invalid');
@@ -271,7 +271,7 @@ $(document).ready(function () {
 			$(this).addClass('is-invalid');
 		}			 
 	});
-    autocomplete($('#country').get(0), countries);
+    //autocomplete($('#country').get(0), countries);
     autocomplete($('#nro_apto').get(0), nro_apto);
     autocomplete($('#administrative_area_level_2').get(0), cidades, function(inp, value) {
         inp.value = value.substring(0, value.indexOf(' (')).trim();

@@ -13,7 +13,7 @@
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->all() as $error)
+                                @foreach ($errors->all() as $k=>$error)
                                     <li><strong>{{ __('Error') }}!</strong> {{ $error }}</li>
                                 @endforeach
                             </ul>

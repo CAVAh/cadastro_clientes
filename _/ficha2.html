@@ -5,113 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ficha Cadastral</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="container mt-3">
+    <div class="container-fluid container-md mt-3">
         <h1 class="text-center">Ficha Cadastral</h1>
         <form id="form" action="" method="post">
-			<div class="form-row">
-                <div class="form-group col-3 col-sm-6 col-md-2">
-                    <label for="nro_apto">Nº Apto</label>
-                    <input type="number" class="form-control" id="nro_apto" placeholder="Apto" maxlength="3" oninput="this.value=this.value.slice(0,this.maxLength)" required>
-                </div>
-				<div class="form-group col-sm-2">
-                    <label for="data_entrada">Data de Entrada</label>
-                    <input type="text" class="form-control date" id="data_entrada" placeholder="Data de Entrada">
-                </div>
-				<div class="form-group col-sm-2">
-                    <label for="data_saida">Data de Saída</label>
-                    <input type="text" class="form-control date" id="data_saida" placeholder="Data de Saída">
-                </div>
-            </div>
-			<fieldset style="    padding: 0.35em 0.75em 0.5em;    border-radius: 10px;
-    border: 1px solid #999;">
-			<legend style="    width: auto;
-    padding: 0 5px;
-    font-size: 1.1rem;">Cliente</legend>
-            <div class="form-row">
-				<div class="form-group col-sm-3">
-                    <label for="cpf">CPF</label>
-                    <input type="text" class="form-control cpf" id="cpf" placeholder="CPF" autocomplete="off">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome Completo" autocomplete="off" required>
-                </div>
-				<div class="form-group col-sm-3">
-                    <label for="identidade">Identidade</label>
-                    <input type="text" class="form-control" id="identidade" placeholder="Identidade">
-                </div>
-                
-			</div>
-            <div class="form-row">                
-                <div class="form-group col-md-6">
-                    <label for="profissao">Profissão</label>
-                    <input type="text" class="form-control" id="profissao" placeholder="Profissão">
-                </div>
-				<div class="form-group col-9 col-sm-6 col-md-3 ml-2 mr-n2">
-                    <label for="profissao">Sexo</label>
-                    <div class="mt-2">
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="sexo" id="sexo_m" value="M" required>
-                            <label class="form-check-label" for="sexo_m">Masculino</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="sexo" id="sexo_f" value="F">
-                            <label class="form-check-label" for="sexo_f">Feminino</label>
-                        </div>
+            <fieldset>
+                <legend>Hospedagem</legend>
+                <div class="form-row">
+                    <div class="form-group col-4 col-sm-4 col-md-2">
+                        <label for="nro_apto">Nº Apto</label>
+                        <input type="number" class="form-control" id="nro_apto" placeholder="Apto" maxlength="3"
+                               oninput="this.value=this.value.slice(0,this.maxLength)" required>
+                    </div>
+                    <div class="w-100 d-block d-sm-none"></div>
+                    <div class="form-group col-6 col-sm-4 col-md-2">
+                        <label for="data_entrada">Data Entrada</label>
+                        <input type="text" class="form-control date" id="data_entrada" placeholder="Data de Entrada">
+                    </div>
+                    <div class="form-group col-6 col-sm-4 col-md-2">
+                        <label for="data_saida">Data Saída</label>
+                        <input type="text" class="form-control date" id="data_saida" placeholder="Data de Saída">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="grupo">Grupo</label>
+                        <input type="text" class="form-control" id="grupo" placeholder="Grupo de Hospedagem">
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="obs_hosp">Observações gerais:</label>
+                        <textarea class="form-control" id="obs_hosp" placeholder="Observações gerais" rows="2"></textarea>
                     </div>
                 </div>
-                <div class="form-group col-sm-3">
-                    <label for="data_nasc">Data de Nascimento</label>
-                    <input type="text" class="form-control date" id="data_nasc" placeholder="Data de Nascimento">
+            </fieldset>
+            <fieldset>
+                <legend>Cliente</legend>
+                <div class="form-row">
+                    <div class="form-group col-sm-4 col-md-3">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control cpf" id="cpf" placeholder="CPF" autocomplete="off">
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" autocomplete="off" required>
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                        <label for="identidade">Identidade</label>
+                        <input type="text" class="form-control" id="identidade" placeholder="Identidade">
+                    </div>
+                    <div class="form-group col-sm-8 col-md-5 col-lg-6">
+                        <label for="profissao">Profissão</label>
+                        <input type="text" class="form-control" id="profissao" placeholder="Profissão">
+                    </div>
+                    <div class="form-group col-6 col-sm-7 col-md-4 col-lg-3 ml-2 mr-n2">
+                        <label>Sexo</label>
+                        <div class="mt-md-2">
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexo" id="sexo_m" value="M" required>
+                                <label class="form-check-label" for="sexo_m">Masculino</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexo" id="sexo_f" value="F">
+                                <label class="form-check-label" for="sexo_f">Feminino</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 col-sm-5 col-md-3">
+                        <label for="data_nasc"><span class="d-none d-sm-inline">Data </span>Nascimento</label>
+                        <input type="text" class="form-control date" id="data_nasc" placeholder="Data Nascimento">
+                    </div>
                 </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="route">Endereço Residencial</label>
-                    <input type="text" class="form-control" id="route" placeholder="Endereço">
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="route">Endereço Residencial</label>
+                        <input type="text" class="form-control" id="route" placeholder="Endereço">
+                    </div>
+                    <div class="form-group col-10 col-md-3">
+                        <label for="administrative_area_level_2">Cidade - UF</label>
+                        <input type="text" class="form-control" id="administrative_area_level_2" placeholder="Cidade">
+                    </div>
+                    <div class="form-group col-2 col-md-1">
+                        <label for="administrative_area_level_1">UF</label>
+                        <input type="text" class="form-control" id="administrative_area_level_1" placeholder="UF" maxlength="2">
+                    </div>
+                    <div class="form-group col-sm-6 col-md-2">
+                        <label for="sublocality_level_1">Bairro</label>
+                        <input type="text" class="form-control" id="sublocality_level_1" placeholder="Bairro">
+                    </div>
+                    <div class="form-group col-6 col-md-2">
+                        <label for="postal_code">CEP</label>
+                        <input type="text" class="form-control cep" id="postal_code" placeholder="CEP">
+                    </div>
+                    <div class="w-100 d-none d-sm-block"></div>
+                    <div class="form-group col-6 col-sm-4 col-md-2">
+                        <label for="fone">Telefone</label>
+                        <input type="text" class="form-control phone" id="fone" placeholder="Telefone">
+                    </div>
+                    <div class="form-group col-6 col-sm-4 col-md-2">
+                        <label for="celular1">Celular 1</label>
+                        <input type="text" class="form-control cellphone" id="celular1" placeholder="Celular 1">
+                    </div>
+                    <div class="form-group col-6 col-sm-4 col-md-2">
+                        <label for="celular2">Celular 2</label>
+                        <input type="text" class="form-control cellphone" id="celular2" placeholder="Celular 2">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="E-mail">
+                    </div>
                 </div>
-				<div class="form-group col-10 col-md-3">
-                    <label for="administrative_area_level_2">Cidade - UF</label>
-                    <input type="text" class="form-control" id="administrative_area_level_2" placeholder="Cidade">
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="obs_cli">Observações:</label>
+                        <textarea class="form-control" id="obs_cli" placeholder="Observações" rows="2"></textarea>
+                    </div>
                 </div>
-				<div class="form-group col-2 col-md-1">
-                    <label for="administrative_area_level_1">UF</label>
-                    <input type="text" class="form-control" id="administrative_area_level_1" placeholder="UF" maxlength="2">
-                </div>
-				<div class="form-group col-md-2">
-                    <label for="sublocality_level_1">Bairro</label>
-                    <input type="text" class="form-control" id="sublocality_level_1" placeholder="Bairro">
-                </div>
-				<div class="form-group col-6 col-md-2">
-                    <label for="postal_code">CEP</label>
-                    <input type="text" class="form-control cep" id="postal_code" placeholder="CEP">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-sm-2">
-                    <label for="fone">Telefone</label>
-                    <input type="text" class="form-control phone" id="fone" placeholder="Telefone">
-                </div>
-                <div class="form-group col-6 col-sm-2">
-                    <label for="celular1">Celular 1</label>
-                    <input type="text" class="form-control cellphone" id="celular1" placeholder="Celular 1">
-                </div>
-                <div class="form-group col-6 col-sm-2">
-                    <label for="celular2">Celular 2</label>
-                    <input type="text" class="form-control cellphone" id="celular2" placeholder="Celular 2">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="E-mail">
-                </div>
-            </div>
-			</fieldset>
+            </fieldset>
             <hr>
             <fieldset class="form-group">
                 <legend>Acompanhantes</legend>
@@ -120,12 +132,12 @@
                         <label for="nome_a1"><span>1</span> - Nome Completo</label>
                         <input type="text" class="form-control" id="nome_a1" placeholder="Nome Completo">
                     </div>
-                    <div class="form-group col-6 col-md-3">
+                    <div class="form-group col-7 col-md-3">
                         <label for="cpf_a1">CPF</label>
                         <input type="text" class="form-control cpf" id="cpf_a1" placeholder="CPF" autocomplete="off">
                     </div>
-                    <div class="form-group col-6 col-md-2">
-                        <label for="data_nasc_a1"><span class="d-none d-sm-inline d-md-none">Data de </span>Nascimento</label>
+                    <div class="form-group col-5 col-md-2">
+                        <label for="data_nasc_a1"><span class="d-none d-sm-inline d-md-none d-lg-inline">Data </span>Nascimento</label>
                         <input type="text" class="form-control date" id="data_nasc_a1" placeholder="Data de Nascimento">
                     </div>
                     <!--<div class="form-group col-md-1">
@@ -133,33 +145,33 @@
                         <button type="button" class="form-control btn btn-primary">+</button>
                     </div>-->
                 </div>
-				<hr class="d-block d-md-none">
+                <hr class="d-block d-md-none">
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <label for="nome_a2"><span>2</span> - Nome Completo</label>
                         <input type="text" class="form-control" id="nome_a2" placeholder="Nome Completo">
                     </div>
-                    <div class="form-group col-6 col-md-3">
+                    <div class="form-group col-7 col-md-3">
                         <label for="cpf_a2">CPF</label>
                         <input type="text" class="form-control cpf" id="cpf_a2" placeholder="CPF">
                     </div>
-                    <div class="form-group col-6 col-md-2">
-                        <label for="data_nasc_a2"><span class="d-none d-sm-inline d-md-none">Data de </span>Nascimento</label>
+                    <div class="form-group col-5 col-md-2">
+                        <label for="data_nasc_a2"><span class="d-none d-sm-inline d-md-none d-lg-inline">Data </span>Nascimento</label>
                         <input type="text" class="form-control date" id="data_nasc_a2" placeholder="Data de Nascimento">
                     </div>
                 </div>
-				<hr class="d-block d-md-none">
+                <hr class="d-block d-md-none">
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <label for="nome_a3"><span>3</span> - Nome Completo</label>
                         <input type="text" class="form-control" id="nome_a3" placeholder="Nome Completo">
                     </div>
-                    <div class="form-group col-6 col-md-3">
+                    <div class="form-group col-7 col-md-3">
                         <label for="cpf_a3">CPF</label>
                         <input type="text" class="form-control cpf" id="cpf_a3" placeholder="CPF">
                     </div>
-                    <div class="form-group col-6 col-md-2">
-                        <label for="data_nasc_a3"><span class="d-none d-sm-inline d-md-none">Data de </span>Nascimento</label>
+                    <div class="form-group col-5 col-md-2">
+                        <label for="data_nasc_a3"><span class="d-none d-sm-inline d-md-none d-lg-inline">Data </span>Nascimento</label>
                         <input type="text" class="form-control date" id="data_nasc_a3" placeholder="Data de Nascimento">
                     </div>
                 </div>

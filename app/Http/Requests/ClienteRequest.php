@@ -20,10 +20,10 @@ class ClienteRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'nome'          => 'bail|required|between:3,80',
-            'rg'            => 'bail|nullable',
-            'cpf'           => 'bail|nullable|cpf',
+            'rg'            => 'bail|nullable|max:13',
+            'cpf'           => 'bail|nullable|cpf|unique:clientes',
             'profissao_id'  => 'bail|nullable|exists:profissoes,id',
             'data_nasc'     => 'bail|nullable|date_format:d/m/Y|before:today',
             'sexo'          => 'bail|in:M,F',
@@ -37,6 +37,13 @@ class ClienteRequest extends FormRequest
             'email'         => 'bail|nullable|email',
             'obs'           => 'bail|nullable',
         ];
+
+        // update
+        if ($this->getMethod() == 'PUT') {
+            $rules['cpf'] = 'bail|nullable|cpf|unique:clientes,cpf,' . $this->id . ',id';
+        }
+
+        return $rules;
     }
 
     protected function getValidatorInstance()

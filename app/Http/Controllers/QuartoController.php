@@ -13,7 +13,7 @@ class QuartoController extends CustomController
     protected $title = 'Quarto';
     protected $prefix = 'quarto';
     protected $validation = [
-        'nome' => 'bail|required|max:50',
+        'nome' => 'bail|required|max:50|unique:quartos',
         'categoria_id' => 'bail|required|exists:categorias,id'
     ];
 
@@ -91,7 +91,9 @@ class QuartoController extends CustomController
      */
     public function update(Request $req, Quarto $quarto)
     {
-        $req->validate($this->validation);
+        $validation = $this->validation;
+        $validation['nome'] = 'bail|required|max:50|unique:quartos,nome,' . $quarto->id . ',id';
+        $req->validate($validation);
 
         $multiplas_hosp = 0;
         if ($req->has('multiplas_hosp')) {

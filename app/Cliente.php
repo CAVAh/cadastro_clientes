@@ -62,4 +62,9 @@ class Cliente extends CustomModel
 
         return parent::format();
     }
+
+    public function hospedagens()
+    {
+        return $this->belongsToMany(Hospedagem::class);
+    }
 }

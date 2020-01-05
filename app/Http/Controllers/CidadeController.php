@@ -58,11 +58,17 @@ class CidadeController extends CustomController
     {
         $request->validate($this->validation);
 
+        $cep = $request->get('cep_padrao');
+
+        if($cep) {
+            $cep = preg_replace('/\D/', '', $cep);
+        }
+
         $cidade = new Cidade([
             'nome'       => $request->get('nome'),
             'ddd'        => $request->get('ddd'),
             'estado_id'  => $request->get('estado_id'),
-            'cep_padrao' => preg_replace('/\D/', '', $request->get('cep_padrao')),
+            'cep_padrao' => $cep,
             'cod_ibge'   => $request->get('cod_ibge')
         ]);
 
@@ -94,10 +100,16 @@ class CidadeController extends CustomController
     {
         $request->validate($this->validation);
 
+        $cep = $request->get('cep_padrao');
+
+        if($cep) {
+            $cep = preg_replace('/\D/', '', $cep);
+        }
+
         $cidade->nome       = $request->get('nome');
         $cidade->ddd        = $request->get('ddd');
         $cidade->estado_id  = $request->get('estado_id');
-        $cidade->cep_padrao = preg_replace('/\D/', '', $request->get('cep_padrao'));
+        $cidade->cep_padrao = $cep;
         $cidade->cod_ibge   = $request->get('cod_ibge');
 
         $cidade->save();
