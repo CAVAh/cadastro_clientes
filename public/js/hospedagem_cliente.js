@@ -120,6 +120,20 @@ $('#data_entrada').blur(function () {
     $('#data_saida').val('');
   }
 });
+$(function () {
+  setTimeout(function () {
+    $('#quarto_id').focus();
+  }, 500);
+  $(".chosen-select").chosen();
+  $(".chosen-container-single").hover(function () {
+    $(this).addClass("chosen-with-drop");
+    $(this).addClass("chosen-container-active");
+    $('.chosen-select').trigger("chosen:open");
+  }, function () {
+    $(this).removeClass("chosen-with-drop");
+    $(this).removeClass("chosen-container-active");
+  });
+});
 
 /***/ }),
 
@@ -130,7 +144,7 @@ $('#data_entrada').blur(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\code\cadastro_clientes\resources\js\hospedagem_cliente.js */"./resources/js/hospedagem_cliente.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\cadastro_clientes\resources\js\hospedagem_cliente.js */"./resources/js/hospedagem_cliente.js");
 
 
 /***/ })

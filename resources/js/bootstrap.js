@@ -12,6 +12,7 @@ try {
 
     require('bootstrap');
     require('jquery-mask-plugin');
+    require('chosen-js');
     require('./custom');
 } catch (e) {}
 

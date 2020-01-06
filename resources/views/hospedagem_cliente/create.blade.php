@@ -15,9 +15,9 @@
                     <div class="form-row">
                         {{ \App\Utils\FormCreate::selectCol('quarto_id', $quartos, 'col-4 col-sm-4 col-md-2', true) }}
                         <div class="w-100 d-block d-sm-none"></div>
+                        {{ \App\Utils\FormCreate::selectCol('grupo_id', $grupos, 'col-md-6', false) }}
                         {{ \App\Utils\FormCreate::date('data_entrada', false, 'col-6 col-sm-4 col-md-2') }}
                         {{ \App\Utils\FormCreate::date('data_saida', false, 'col-6 col-sm-4 col-md-2') }}
-                        {{ \App\Utils\FormCreate::selectCol('grupo_id', $grupos, 'col-md-6') }}
                         {{ \App\Utils\FormCreate::textarea('obs_hosp', 'col-12') }}
                     </div>
                 </fieldset>
@@ -75,5 +75,18 @@
 @endsection
 
 @section('footer')
-<script src="{{ asset('js/hospedagem_cliente.js') }}" defer></script>
+    <script src="{{ asset('js/hospedagem_cliente.js') }}" defer></script>
+    <script>
+        $.ajax({
+            dataType: 'json',
+            type : 'get',
+            url : '{{URL::to('search_excess_milk_details')}}',
+
+            data:{ 'search_frmdate': $('#search_frmdate').val(),
+                'search_todate': $('#search_date').val(),
+                'search_time': $('#search_time').val(),
+                'search_nl': $('#search_nl').val(),
+                'search_note': $('#search_note').val()
+            },
+    </script>
 @endsection

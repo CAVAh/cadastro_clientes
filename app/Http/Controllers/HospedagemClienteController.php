@@ -51,7 +51,7 @@ class HospedagemClienteController extends CustomController
         $bairros    = Bairro::all(['id', 'nome']);
         $cidades    = Cidade::all(['id', 'nome']);
         $quartos    = Quarto::all(['id', 'nome']);
-        $grupos     = GrupoHospedagem::all(['id', 'nome']);
+        $grupos     = GrupoHospedagem::all(['id', 'nome'])->sortByDesc('id');
 
         return parent::view($this->prefix . '.create', compact('profissoes', 'bairros', 'cidades', 'quartos', 'grupos'));
     }

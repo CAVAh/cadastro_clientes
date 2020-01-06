@@ -58,7 +58,7 @@ function autocomplete(inp, arr, callback) {
         if (x) {
             x = x.getElementsByTagName("div");
         }
-		
+
 		console.log(e.keyCode);
 
         if (e.keyCode === 40) {
@@ -83,7 +83,7 @@ function autocomplete(inp, arr, callback) {
             }
         } else if (e.keyCode === 9) {
 			closeAllLists();
-			
+
 			if (currentFocus > -1) {
                 if (x) x[currentFocus].click();
             } else {
@@ -264,12 +264,12 @@ $(document).ready(function () {
     });
 	$('#nro_apto').on('blur', function () {
 		$(this).removeClass('is-valid is-invalid');
-		
+
 		if(nro_apto.includes($(this).val())) {
 			$(this).addClass('is-valid');
 		} else {
 			$(this).addClass('is-invalid');
-		}			 
+		}
 	});
     //autocomplete($('#country').get(0), countries);
     autocomplete($('#nro_apto').get(0), nro_apto);

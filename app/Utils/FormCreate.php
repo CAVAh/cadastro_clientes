@@ -52,15 +52,16 @@ class FormCreate
      * @param string            $field
      * @param bool              $required
      * @param string            $classGroup
+     * @param string            $class
      * @return string
      */
-    public static function select(string $name, $values, string $id = 'id', string $field = 'nome', bool $required = false, string $classGroup = '')
+    public static function select(string $name, $values, string $id = 'id', string $field = 'nome', bool $required = false, string $classGroup = '', string $class = '')
     {
         $required = $required ? 'required' : '';
-        $class    = 'form-control ';
+        $class    = $class . ' form-control ';
 
         if (self::$errors instanceof MessageBag) {
-            $class = self::$errors->has($name) ? 'is-invalid' : '';
+            $class .= self::$errors->has($name) ? 'is-invalid' : '';
         }
 
         $class = trim($class);
@@ -84,9 +85,17 @@ class FormCreate
         return '';
     }
 
-    public static function selectCol(string $name, $values, string $classGroup, bool $required = false)
+    /**
+     * @param string $name
+     * @param $values
+     * @param string $classGroup
+     * @param bool $required
+     * @param string $class
+     * @return string
+     */
+    public static function selectCol(string $name, $values, string $classGroup, bool $required = false, string $class = '')
     {
-        return self::select($name, $values, 'id', 'nome', $required, $classGroup);
+        return self::select($name, $values, 'id', 'nome', $required, $classGroup, $class);
     }
 
     /**

@@ -26,3 +26,19 @@ $('#data_entrada').blur(function () {
         $('#data_saida').val('');
     }
 });
+
+$(function () {
+    setTimeout(function () {
+        $('#quarto_id').focus();
+    }, 500);
+
+    $(".chosen-select").chosen();
+    $(".chosen-container-single").hover(function () {
+        $(this).addClass("chosen-with-drop");
+        $(this).addClass("chosen-container-active");
+        $('.chosen-select').trigger("chosen:open");
+    }, function () {
+        $(this).removeClass("chosen-with-drop");
+        $(this).removeClass("chosen-container-active");
+    });
+});
