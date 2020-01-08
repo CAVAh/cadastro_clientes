@@ -5,7 +5,6 @@ namespace App;
 use App\Utils\Format;
 
 /**
- * @property mixed id
  * @property mixed nome
  * @property mixed rg
  * @property mixed cpf
@@ -49,9 +48,8 @@ class Cliente extends CustomModel
         'verificado',
         'hospedou',
     ];
-    protected $hidden = [
-        'rg', 'profissao_id', 'sexo', 'endereco', 'cidade_id', 'bairro_id', 'cep', 'fone', 'celular', 'celular2',
-        'email', 'obs', 'cpf_conferido', 'verificado', 'hospedou'
+    public $visible = [
+        'id', 'nome', 'cpf', 'data_nasc'
     ];
 
     public function format()

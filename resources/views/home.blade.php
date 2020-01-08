@@ -15,14 +15,6 @@
                     @endif
 
                     You are logged in!<br>
-
-                        <a href="{{ route('pais.index') }}" class="btn btn-primary">País Index</a>
-                        <a href="{{ route('pais.create') }}" class="btn btn-primary">País Create</a>
-
-                        <form action="{{ route('pais.store')}}" method="post">
-                            @csrf
-                            <button class="btn btn-danger" type="submit">Submit</button>
-                        </form>
                 </div>
             </div>
         </div>

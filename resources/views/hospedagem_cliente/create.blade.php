@@ -25,7 +25,7 @@
                     <legend>Cliente</legend>
                     <div class="form-row">
                         {{ \App\Utils\FormCreate::cpf('cpf', false, 'col-sm-4 col-md-3') }}
-                        {{ \App\Utils\FormCreate::text('nome', 80, false, '', 'col-sm-8 col-md-6') }}
+                        {{ \App\Utils\FormCreate::text('nome', 80, true, '', 'col-sm-8 col-md-6') }}
                         {{ \App\Utils\FormCreate::text('rg', 13, false, '', 'col-sm-4 col-md-3') }}
                         {{ \App\Utils\FormCreate::selectCol('profissao_id', $profissoes, 'col-sm-8 col-md-5 col-lg-6') }}
                         {{ \App\Utils\FormCreate::enum('sexo', ['F', 'M'], true, 'col-6 col-sm-7 col-md-4 col-lg-3 ml-2 mr-n2', 'mt-md-2') }}
@@ -74,19 +74,34 @@
     </div>
 @endsection
 
-@section('footer')
-    <script src="{{ asset('js/hospedagem_cliente.js') }}" defer></script>
-    <script>
-        $.ajax({
-            dataType: 'json',
-            type : 'get',
-            url : '{{URL::to('search_excess_milk_details')}}',
+@section('script')
+    <script src="{{ asset('js/hospedagem_cliente.js') }}"></script>
+    <script type="text/javascript">
+        (function () {
+            $('#cpf').blur(function () {
+                const _this = $(this);
 
-            data:{ 'search_frmdate': $('#search_frmdate').val(),
-                'search_todate': $('#search_date').val(),
-                'search_time': $('#search_time').val(),
-                'search_nl': $('#search_nl').val(),
-                'search_note': $('#search_note').val()
-            },
+                $.ajax({
+                    dataType: 'json',
+                    type: 'get',
+                    url: '{{URL::to('/cliente/findByCpf/' )}}',
+                    data: {
+                        'cpf': _this.val()
+                    },
+                    success: function (data) {
+                        if(!$.isEmptyObject(data)) {
+                            console.log(data);
+                            _this.val('');
+                            _this.removeClass('is-valid');
+                            alert('CPF já cadastrado, passe para a próxima ficha.');
+                            _this.get(0).focus();
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+        })();
     </script>
 @endsection

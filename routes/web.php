@@ -24,8 +24,9 @@ function createDefaultRoutes($prefix, $controller = null)
     }
 
     Route::get('/', ['as' => 'index', 'uses' => $c . 'index']);
-    Route::post('/', ['as' => 'store', 'uses' => $c . 'store']);
     Route::get('/create', ['as' => 'create', 'uses' => $c . 'create']);
+    Route::post('/', ['as' => 'store', 'uses' => $c . 'store']);
+    //Route::get('/{' . $prefix . '}', ['as' => 'show', 'uses' => $c . 'show']);
     Route::get('/{' . $prefix . '}/edit', ['as' => 'edit', 'uses' => $c . 'edit']);
     Route::put('/{' . $prefix . '}', ['as' => 'update', 'uses' => $c . 'update']);
     Route::delete('/{' . $prefix . '}', ['as' => 'destroy', 'uses' => $c . 'destroy']);
@@ -39,6 +40,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/roles-permissions', 'HomeController@rolesPermissions');
+Route::get('/cliente/findByCpf/', 'ClienteController@findByCpf');
 
 $prefixs = ['pais', 'estado', 'categoria', 'quarto', 'cidade', 'portador', 'tipo_hospedagem',
             'profissao', 'bairro', 'grupo_hospedagem', 'cliente', 'hospedagem', 'hospedagem_cliente'];

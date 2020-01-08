@@ -76,6 +76,43 @@ class ClienteController extends CustomController
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param Cliente $cliente
+     * @return Response
+     */
+    //public function show(Cliente $cliente)
+    //{
+    //    dd($cliente);
+    //}
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \Request $request
+     * @return Response
+     */
+    public function findByCpf(\Request $request)
+    {
+        $cpf = $request::get('cpf');
+        $result = null;
+
+        if($cpf) {
+            $result = Cliente::where('cpf' , '=', $cpf)->first();
+
+            if($result) {
+                $result = $result->toJson();
+            }
+        }
+
+        if(is_null($result)) {
+            $result = '{}';
+        }
+
+        return Response($result);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param Cliente $cliente
